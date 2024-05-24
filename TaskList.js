@@ -6,7 +6,7 @@ export default class TaskList {
     document.getElementById('todo-form').insertAdjacentElement('afterend', this.taskList);
   }
 
-  addTask(taskName) {
+  addItem(taskName) {
     const li = document.createElement('li');
     li.className = 'list-group-item';
 
@@ -53,8 +53,8 @@ export default class TaskList {
       editConfirm.textContent = 'Okay';
 
       editInput.addEventListener('input', function () {
-        if (editInput.value.length > 110) {
-          editInput.value = editInput.value.slice(0, 110);
+        if (editInput.value.length > 90) {
+          editInput.value = editInput.value.slice(0, 90);
         }
       });
 
