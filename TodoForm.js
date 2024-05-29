@@ -2,21 +2,23 @@ export default class TodoForm {
   constructor(onSubmit) {
     this.onSubmit = onSubmit;
     this.taskInput = document.getElementById('task-input');
+    this.formElement = document.getElementById('todo-form');
+    
     this.taskInput.addEventListener('input', this.handleInput.bind(this));
-    const formElement = document.getElementById('todo-form');
-    formElement.addEventListener('submit', this.handleSubmit.bind(this));
+    this.formElement.addEventListener('submit', this.handleSubmit.bind(this));
   }
 
-  handleInput(value) {
+  handleInput() {
+    const value = this.taskInput.value;
     if (value.length > 90) {
-      return value.slice(0, 90);
+      this.taskInput.value = value.slice(0, 90);
     }
-    return value;
   }
 
   handleSubmit(event) {
+    event.preventDefault();
     const trimmedTaskName = this.taskInput.value.trim();
-    if (trimmedTaskName !== '') {
+    if (trimmedTaskName) {
       this.onSubmit(trimmedTaskName);
       this.taskInput.value = '';
     }

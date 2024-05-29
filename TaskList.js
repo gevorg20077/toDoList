@@ -1,9 +1,6 @@
 export default class TaskList {
   constructor() {
-    this.taskList = document.createElement('ul');
-    this.taskList.classList.add("list-group", "d-flex");
-    this.taskList.id = "task-list";
-    document.getElementById('todo-form').insertAdjacentElement('afterend', this.taskList);
+    this.taskList = document.getElementById('task-list');
   }
 
   addItem(taskName) {
@@ -27,9 +24,7 @@ export default class TaskList {
     const deleteBtn = document.createElement('button');
     deleteBtn.className = 'btn btn-danger btn-sm float-right';
     deleteBtn.textContent = 'Delete';
-    deleteBtn.addEventListener('click', () => {
-      li.remove();
-    });
+    deleteBtn.addEventListener('click', () => li.remove());
     return deleteBtn;
   }
 
@@ -52,7 +47,7 @@ export default class TaskList {
       editConfirm.className = 'btn btn-secondary btn-sm bg-success float-right';
       editConfirm.textContent = 'Okay';
 
-      editInput.addEventListener('input', function () {
+      editInput.addEventListener('input', () => {
         if (editInput.value.length > 90) {
           editInput.value = editInput.value.slice(0, 90);
         }
@@ -62,7 +57,7 @@ export default class TaskList {
       li.insertBefore(editInput, li.querySelector('.btn-danger'));
       editBtn.insertAdjacentElement('afterend', editConfirm);
 
-      editConfirm.addEventListener('click', function () {
+      editConfirm.addEventListener('click', () => {
         span.textContent = editInput.value;
         editInput.remove();
         editConfirm.remove();
